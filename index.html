@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pick a Card</title>
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        background-image: url(Jeeto.jpg);
+    }
+
+    .container {
+    display: grid;
+    grid-template-columns: repeat(5, 170px); /* width bada kiya 100px → 150px */
+    gap: 15px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.card {
+    width: 170px;   /* card width */
+    height: 180px;  /* card height */
+    background: #7e0707;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    display: none; /* initially hidden */
+    object-fit: cover; /* image fit in card */
+    border-radius: 15px;
+}
+
+.opened img {
+    display: block;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+</style>
+</head>
+<body>
+
+
+<div class="container" id="cards" style="margin-top: 170px;"></div>
+
+<script>
+// Aap yahan apni images ke URLs ya local paths dalen
+const images = [
+  "Pizza.jfif",
+  "Pizza.jfif",
+  "Car.jpg",
+  "Cycle.webp",
+  "Bike.jpg",
+  "Bike.jpg",
+  "Egg.jfif",
+  "Egg.jfif",
+  "Car.jpg",
+  "Bike.jpg"
+];
+
+let opened = false;
+const container = document.getElementById("cards");
+
+for (let i = 0; i < 10; i++) {
+    let card = document.createElement("div");
+    card.classList.add("card");
+
+    let img = document.createElement("img");
+    img.src = images[i]; // assign image
+    card.appendChild(img);
+
+    card.onclick = function () {
+        if (!opened) {
+            opened = true;
+            card.classList.add("opened");
+
+            // Disable all other cards
+            let allCards = document.querySelectorAll(".card");
+            allCards.forEach(c => {
+                if (c !== card) {
+                    c.classList.add("disabled");
+                }
+            });
+        }
+    };
+
+    container.appendChild(card);
+}
+</script>
+
+</body>
+</html>
