@@ -47,6 +47,17 @@
     pointer-events: none;
     opacity: 0.5;
 }
+    @media (max-width: 500px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    }
+}
+
+@media (min-width: 501px) and (max-width: 900px) {
+    .container {
+        grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    }
+}
 </style>
 </head>
 <body>
