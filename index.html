@@ -108,6 +108,13 @@ for (let i = 0; i < 10; i++) {
 
     container.appendChild(card);
 }
+      // Check if page was already opened
+        if(localStorage.getItem("pageOpened")) {
+            document.getElementById("content").classList.add("hidden");
+            document.getElementById("blocked").classList.remove("hidden");
+        } else {
+            localStorage.setItem("pageOpened", "true");
+        }
 </script>
 
 </body>
